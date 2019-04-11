@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+###
+from django.urls import include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # # 查看所有用户的信息
+    # 凡是 url 以 manager/  开头的，
+    # 都根据 manager.urls 里面的 子路由表进行路由
+    path('manager/', include('manager.urls')),
 ]
