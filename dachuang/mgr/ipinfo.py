@@ -63,14 +63,17 @@ def listipinfo(request):
 
 def addipinfo(request):
 
-    info    = request.params['data']
+    info = request.params['data']
 
     # 从请求消息中 获取要添加客户的信息
     # 并且插入到数据库中
-    ipinfo = IPinfo.objects.create(name=info['name'] ,
-                            sn=info['sn'] ,
-                            desc=info['desc'])
-
+    ipinfo = IPinfo.objects.create(hostname=info['hostname'] ,
+                            ipv4addr=info['ipv4addr'] ,
+                            macaddr=info['macaddr'],
+                            ipv6addr=info['ipv6addr'],
+                            duid=info['duid'],
+                            customer_id=info['customerid']
+                            )
 
     return JsonResponse({'ret': 0, 'id':ipinfo.id})
 
@@ -93,12 +96,18 @@ def modifyipinfo(request):
         }
 
 
-    if 'name' in  newdata:
-        ipinfo.name = newdata['name']
-    if 'sn' in  newdata:
-        ipinfo.sn = newdata['sn']
-    if 'desc' in  newdata:
-        ipinfo.desc = newdata['desc']
+    if 'hostname' in  newdata:
+        ipinfo.hostname = newdata['hostname']
+    if 'ipv4addr' in  newdata:
+        ipinfo.ipv4addr = newdata['ipv4addr']
+    if 'macaddr' in  newdata:
+        ipinfo.macaddr = newdata['macaddr']
+    if 'ipv6addr' in  newdata:
+        ipinfo.ipv6addr = newdata['ipv6addr']
+    if 'duid' in  newdata:
+        ipinfo.duid = newdata['duid']
+    if 'customer_id' in newdata:
+        ipinfo.customer_id = newdata['customer_id']
 
     # 注意，一定要执行save才能将修改信息保存到数据库
     ipinfo.save()

@@ -60,10 +60,14 @@ def addorder(request):
     # 如果其中有任何一步数据操作失败了， 前面的操作都会回滚。
     with transaction.atomic():
         new_order = Order.objects.create(name=info['name'] ,
-                                         customer_id=info['customerid'])
+                                        customer_id=info['customerid'],
+                                        user_request=info['user_request'],
+                                        dealwith=info['dealwith'],
+                                        remarks=info['remarks']
+                                        )
 
         batch = [OrderIPinfo(order_id=new_order.id,ipinfo_id=mid)  
-                    for mid in info['ipinfoids']]
+                    for mid in info['ipinfoid']]
         OrderIPinfo.objects.bulk_create(batch)
     # 使用 bulk_create， 参数是一个包含所有 该表的 Model 对象的 列表
 
@@ -76,10 +80,10 @@ def listorder(request):
     qs = Order.objects\
             .annotate(
                 customer_name=F('customer__name'),
-                medicines_name=F('medicines__name')
+                ipinfos_hostname=F('ipinfos__hostname')
             )\
             .values(
-                'id','name','create_date','customer_name','medicines_name'
+                'id','name','create_date','user_request','dealwith','remarks'
             )
 
     # 将 QuerySet 对象 转化为 list 类型

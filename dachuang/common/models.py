@@ -42,7 +42,7 @@ class Order(models.Model):
     create_date = models.DateTimeField(default=datetime.datetime.now)
 
     # 客户请求
-    request = models.TextField(max_length=6000)
+    user_request = models.TextField(max_length=6000)
 
     # 解决方案
     dealwith = models.TextField(max_length=6000)
@@ -50,9 +50,16 @@ class Order(models.Model):
     # 备注
     remarks = models.TextField(max_length=6000)
 
+    # 客户
+    customer = models.ForeignKey(Customer,on_delete=models.PROTECT)
+
     # 客户 禁止删除记录。PROTECT
     ipinfos = models.ManyToManyField(IPinfo,through='OrderIPinfo')
 
 class OrderIPinfo(models.Model):
     order = models.ForeignKey(Order, on_delete=models.PROTECT)
     ipinfo = models.ForeignKey(IPinfo, on_delete=models.PROTECT)
+
+
+# from django.contrib import admin
+# admin.site.register(Customer)

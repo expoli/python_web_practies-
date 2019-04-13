@@ -48,8 +48,6 @@ def dispatcher(request):
     else:
         return JsonResponse({'ret': 1, 'msg': '不支持该类型http请求'})
 
-
-# 列出客户
 def listcustomers(request):
     # 返回一个 QuerySet 对象 ，包含所有的表记录
     qs = Customer.objects.values()
@@ -63,11 +61,11 @@ def listcustomers(request):
 # 添加客户
 def addcustomer(request):
     
-    info = request.params['data']
+    info    = request.params['data']
 
     # 从请求消息中 获取要添加客户的信息
     # 并且插入到数据库中
-    # 返回值 就是对应插入记录的对象 
+    # 返回值 就是对应插入记录的对象
     record = Customer.objects.create(address=info['name'] ,
                             name=info['phonenumber'] ,
                             phonenumber=info['address'],
@@ -77,20 +75,19 @@ def addcustomer(request):
 
 # 修改客户信息
 def modifycustomer(request):
-    
     # 从请求消息中 获取修改客户的信息
     # 找到该客户，并且进行修改操作
-    
+
     customerid = request.params['id']
-    newdata    = request.params['newdata']
+    newdata = request.params['newdata']
 
     try:
         # 根据 id 从数据库中找到相应的客户记录
         customer = Customer.objects.get(id=customerid)
     except Customer.DoesNotExist:
-        return  {
-                'ret': 1,
-                'msg': f'id 为`{customerid}`的客户不存在'
+        return {
+            'ret': 1,
+            'msg': f'id 为`{customerid}`的客户不存在'
         }
 
 
@@ -109,9 +106,8 @@ def modifycustomer(request):
     return JsonResponse({'ret': 0})
 
 # 删除客户
-
 def deletecustomer(request):
-    
+
     customerid = request.params['id']
 
     try:
