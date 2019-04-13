@@ -71,11 +71,7 @@ def addcustomer(request):
     record = Customer.objects.create(address=info['name'] ,
                             name=info['phonenumber'] ,
                             phonenumber=info['address'],
-                            hostname=info['hostname'],
-                            ipv4addr=info['ipv4addr'],
-                            macaddr=info['macaddr'],
-                            ipv6addr=info['ipv6addr'],
-                            duid=info['duid']
+                            idcard=info['idcard']
                             )
     return JsonResponse({'ret': 0, 'id':record.id})
 
@@ -104,16 +100,8 @@ def modifycustomer(request):
         customer.phonenumber = newdata['phonenumber']
     if 'address' in  newdata:
         customer.address = newdata['address']
-    if 'hostname' in newdata:
-        customer.hostname = newdata['hostname']
-    if 'ipv4addr' in newdata:
-        customer.ipv4addr = newdata['ipv4addr']
-    if 'macaddr' in newdata:
-        customer.macaddr = newdata['macaddr']
-    if 'ipv6addr' in newdata:
-        customer.ipv6addr = newdata['ipv6addr']
-    if 'duid' in newdata:
-        customer.duid = newdata['duid']
+    if 'idcard' in newdata:
+        customer.idcard = newdata['idcard']
 
     # 注意，一定要执行save才能将修改信息保存到数据库
     customer.save()
