@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-###
+# 导入一个include函数
 from django.urls import include
 
+# 静态文件服务
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +32,4 @@ urlpatterns = [
     # 凡是 url 以 api/mgr  开头的，
     # 都根据 mgr.urls 里面的 子路由表进行路由
     path('api/mgr/', include('mgr.urls')),
-]
+] +  static("/", document_root="./z_dist")
