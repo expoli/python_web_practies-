@@ -4,19 +4,19 @@ import json
 
 def dispatcherBase(request,action2HandlerTable):
     # 根据session判断用户是否是登录的管理员用户
-    if 'usertype' not in request.session:
-        return JsonResponse({
-            'ret': 302,
-            'msg': '未登录',
-            'redirect': '/mgr/sign.html'},
-            status=302)
+    # if 'usertype' not in request.session:
+    #     return JsonResponse({
+    #         'ret': 302,
+    #         'msg': '未登录',
+    #         'redirect': '/mgr/sign.html'},
+    #         status=302)
 
-    if request.session['usertype'] != 'mgr':
-        return JsonResponse({
-            'ret': 302,
-            'msg': '用户非mgr类型',
-            'redirect': '/mgr/sign.html'},
-            status=302)
+    # if request.session['usertype'] != 'mgr':
+    #     return JsonResponse({
+    #         'ret': 302,
+    #         'msg': '用户非mgr类型',
+    #         'redirect': '/mgr/sign.html'},
+    #         status=302)
 
 
     # 将请求参数统一放入request 的 params 属性中，方便后续处理

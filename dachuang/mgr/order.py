@@ -1,4 +1,4 @@
-import json
+import json,traceback
 
 from django.db import IntegrityError, transaction
 from django.db.models import F
@@ -6,6 +6,9 @@ from django.http import JsonResponse
 
 # 导入 Order 对象定义
 from common.models import Order, OrderIPinfo
+
+from django.core.paginator import Paginator, EmptyPage
+from django.db.models import Q
 
 
 def addorder(request):
@@ -38,32 +41,50 @@ def addorder(request):
 
 
 def listorder(request):
-    # 返回一个 QuerySet 对象 ，包含所有的表记录
-    qs = Order.objects\
-        .annotate(
-            customer_name=F('customer__name'),
-            ipinfos_hostname=F('ipinfos__hostname')
-        )\
-        .values(
-            'id', 'name', 'create_date', 'user_request', 'dealwith', 'remarks'
-        )
+    try:
+        # 返回一个 QuerySet 对象 ，包含所有的表记录
+        qs = Order.objects\
+            .annotate(
+                customer_name=F('customer__name'),
+                ipinfos_hostname=F('ipinfos__hostname')
+            )\
+            .values(
+                'id', 'name', 'create_date', 'user_request', 'dealwith', 'remarks'
+            ).order_by('-id')
 
-    # 将 QuerySet 对象 转化为 list 类型
-    retlist = list(qs)
+        # 查看是否有 关键字 搜索 参数
+        keywords = request.params.get('keywords',None)
+        if keywords:
+            conditions = [Q(name__contains=one) for one in keywords.split(' ') if one]
+            query = Q()
+            for condition in conditions:
+                query &= condition
+            qs = qs.filter(query)
 
-    # 可能有 ID相同，药品不同的订单记录， 需要合并
-    newlist = []
-    id2order = {}
-    for one in retlist:
-        orderid = one['id']
-        if orderid not in id2order:
-            newlist.append(one)
-            id2order[orderid] = one
-        else:
-            id2order[orderid]['medicines_name'] += ' | ' + \
-                one['medicines_name']
+        # 要获取的第几页
+        pagenum = request.params['pagenum']
 
-    return JsonResponse({'ret': 0, 'retlist': newlist})
+        # 每页要显示多少条记录
+        pagesize = request.params['pagesize']
+
+        # 使用分页对象，设定每页多少条记录
+        pgnt = Paginator(qs, pagesize)
+
+        # 从数据库中读取数据，指定读取其中第几页
+        page = pgnt.page(pagenum)
+
+        # 将 QuerySet 对象 转化为 list 类型
+        retlist = list(page)
+
+        # total指定了 一共有多少数据
+        return JsonResponse({'ret': 0, 'retlist': retlist,'total': pgnt.count})
+
+    except EmptyPage:
+        return JsonResponse({'ret': 0, 'retlist': [], 'total': 0})
+
+    except:
+        return JsonResponse({'ret': 2,  'msg': f'未知错误\n{traceback.format_exc()}'})
+
 
 from lib.handler import dispatcherBase
 

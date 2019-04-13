@@ -7,10 +7,10 @@ def test():
     payload = {
         "action":"add_customer",
         "data":{
-            "address": "江苏省常州武进市白云街44号",
-            "name": "武进市 袁腾飞",
-            "phonenumber": "13886666666",
-            "idcard": "aaaaaaaaaaaaaaaa"
+            "address": "河南省郑州市武100号",
+            "name": "超哥哥",
+            "phonenumber": "1388888888",
+            "idcard": "***************"
         }
     }
     r = requests.post(url = url,json = payload,headers = headers)    #发送请求

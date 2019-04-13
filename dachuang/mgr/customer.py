@@ -5,19 +5,49 @@ import json
 from django.http import JsonResponse
 
 from common.models import Customer
-# 导入 Customer
-from lib.handler import dispatcherBase
 
+from django.core.paginator import Paginator, EmptyPage
+from django.db.models import Q
+
+import traceback
 
 def listcustomers(request):
-    # 返回一个 QuerySet 对象 ，包含所有的表记录
-    qs = Customer.objects.values()
+    try:
+        # 返回一个 QuerySet 对象 ，包含所有的表记录
+        qs = Customer.objects.values().order_by('-id')
 
-    # 将 QuerySet 对象 转化为 list 类型
-    # 否则不能 被 转化为 JSON 字符串
-    retlist = list(qs)
+        # 查看是否有 关键字 搜索 参数
+        keywords = request.params.get('keywords',None)
+        if keywords:
+            conditions = [Q(name__contains=one) for one in keywords.split(' ') if one]
+            query = Q()
+            for condition in conditions:
+                query &= condition
+            qs = qs.filter(query)
 
-    return JsonResponse({'ret': 0, 'retlist': retlist})
+        # 要获取的第几页
+        pagenum = request.params['pagenum']
+
+        # 每页要显示多少条记录
+        pagesize = request.params['pagesize']
+
+        # 使用分页对象，设定每页多少条记录
+        pgnt = Paginator(qs, pagesize)
+
+        # 从数据库中读取数据，指定读取其中第几页
+        page = pgnt.page(pagenum)
+
+        # 将 QuerySet 对象 转化为 list 类型
+        retlist = list(page)
+
+        # total指定了 一共有多少数据
+        return JsonResponse({'ret': 0, 'retlist': retlist,'total': pgnt.count})
+
+    except EmptyPage:
+        return JsonResponse({'ret': 0, 'retlist': [], 'total': 0})
+
+    except:
+        return JsonResponse({'ret': 2,  'msg': f'未知错误\n{traceback.format_exc()}'})
 
 # 添加客户
 
