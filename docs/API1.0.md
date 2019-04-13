@@ -294,7 +294,7 @@ ret 为 0 表示登录成功
 `retlist` 里面包含了所有的IP信息列表。
 每个IP信息以如下格式存储
 ```json
-    {"id": 1, "hostname": "DESKTOP-CAKF83U", "ipv4addr": "192.168.0.78", "macaddr": "34:97:F6:E0:1D:E2", "ipv6addr": "2001:da8:5000:5020:f5bb:a892:6a9:d7ef", "duid" : "adadasasdasfdfa"},
+    {"id": 1, "hostname": "DESKTOP-CAKF83U", "ipv4addr": "192.168.0.78", "macaddr": "34:97:F6:E0:1D:E2", "ipv6addr": "2001:da8:5000:5020:f5bb:a892:6a9:d7ef", "duid" : "adadasasdasfdfa"}
 ```
 
 ## 添加一个ipinfo

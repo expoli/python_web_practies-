@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5ad9369-a532-4c0c-bdb2-32f21e8cccfa" name="Default Changelist" comment="init project app" />
+    <list default="true" id="d5ad9369-a532-4c0c-bdb2-32f21e8cccfa" name="Default Changelist" comment="init project app">
+      <change beforePath="$PROJECT_DIR$/dachuang/common/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/common/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/common/migrations/0002_auto_20190412_1315.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/common/migrations/0003_auto_20190413_0307.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/common/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/common/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/mgr/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/mgr/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/z_dist/mgr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/z_dist/mgr/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/z_dist/mgr/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/z_dist/mgr/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dachuang/z_dist/mgr/sign.html" beforeDir="false" afterPath="$PROJECT_DIR$/dachuang/z_dist/mgr/sign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/API1.0.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/API1.0.md" afterDir="false" />
+    </list>
     <list id="b782ba3f-f2de-4be7-a342-0977fdece7f3" name="Revert: init project app" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -9,16 +27,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bash.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -123,28 +139,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="python_web_practies" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dachuang" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dachuang/manage.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <module name="python_web_practies" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -201,6 +195,28 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="python_web_practies" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dachuang" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dachuang/manage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.manage" />
@@ -225,6 +241,7 @@
       <workItem from="1554812906584" duration="789000" />
       <workItem from="1554966492028" duration="2124000" />
       <workItem from="1554984354846" duration="51000" />
+      <workItem from="1555137262686" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <created>1554110096209</created>
@@ -251,12 +268,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7284000" />
+    <option name="totallyTimeSpent" value="7303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19337606" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19530416" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -270,7 +287,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4997233" weight="0.3303671" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5002767" side_tool="true" weight="0.32963374" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3106796" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31092438" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32963374" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -380,33 +397,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dachuang/services/data.txt" />
     <entry file="file://$PROJECT_DIR$/dachuang/services/test.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="96">
-            <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/req_v1.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="264">
-            <caret line="11" selection-start-line="11" selection-end-line="11" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/docs/req_v1.md" />
+    <entry file="file://$PROJECT_DIR$/dachuang/z_dist/mgr/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/bash.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

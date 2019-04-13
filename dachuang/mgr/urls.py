@@ -1,8 +1,12 @@
 from django.urls import path
-from mgr import sign_in_out
+from mgr import customer,sign_in_out,ipinfo,order
 
 urlpatterns = [
 
+    path('customers', customer.dispatcher),
+    path('ipinfos', ipinfo.dispatcher),
+
+    path('orders', order.dispatcher),
     path('signin', sign_in_out.signin),
     path('signout', sign_in_out.signout),
 
