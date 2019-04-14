@@ -29,8 +29,7 @@ def addorder(request):
                                          remarks=info['remarks']
                                          )
 
-        batch = [OrderIPinfo(order_id=new_order.id, ipinfo_id=mid)
-                 for mid in info['ipinfoid']]
+        batch = [OrderIPinfo(order_id=new_order.id, ipinfo_id=info['ipinfoid'])]
         OrderIPinfo.objects.bulk_create(batch)
     # 使用 bulk_create， 参数是一个包含所有 该表的 Model 对象的 列表
 
@@ -85,12 +84,39 @@ def listorder(request):
     except:
         return JsonResponse({'ret': 2,  'msg': f'未知错误\n{traceback.format_exc()}'})
 
+def deleteorder(request):
+    # 获取订单ID
+    oid = request.params['id']
+
+    try:
+
+        one = Order.objects.get(id=oid)
+        with transaction.atomic():
+
+            # 一定要先删除 OrderIPinfo 里面的记录
+            OrderIPinfo.objects.filter(order_id=oid).delete()
+            # 再删除订单记录
+            one.delete()
+
+        return JsonResponse({'ret': 0, 'id': oid})
+
+    except Order.DoesNotExist:
+        return JsonResponse({
+            'ret': 1,
+            'msg': f'id 为`{oid}`的订单不存在'
+        })
+
+    except:
+        err = traceback.format_exc()
+        return JsonResponse({'ret': 1, 'msg': err})
+
 
 from lib.handler import dispatcherBase
 
 Action2Handler = {
     'list_order': listorder,
     'add_order': addorder,
+    'delete_order': deleteorder,
 }
 
 
