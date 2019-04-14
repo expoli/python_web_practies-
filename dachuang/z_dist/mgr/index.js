@@ -8927,11 +8927,11 @@
                             return e
                     }
                 },
-                medicines: function () {
+                ipinfos: function () {
                     var e = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : null
                         , t = 1 < arguments.length ? arguments[1] : void 0;
                     switch (t.type) {
-                        case "FETCH_MEDICINE_SUCCESS":
+                        case "FETCH_IPINFO_SUCCESS":
                             return t.data;
                         default:
                             return e
@@ -8992,7 +8992,7 @@
                                 className: "logo-mini"
                             }, Me.a.createElement("b", null, "白月")), Me.a.createElement("span", {
                                 className: "logo-lg"
-                            }, "白月", Me.a.createElement("b", null, "SMS"))), Me.a.createElement("nav", {
+                            }, "鱼认", Me.a.createElement("b", null, "SYS"))), Me.a.createElement("nav", {
                                 className: "navbar navbar-static-top",
                                 role: "navigation"
                             }, Me.a.createElement("a", {
@@ -9204,6 +9204,11 @@
                     }).isRequired
                 }).isRequired
             };
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 这是注释
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         var en = Zt
             , tn = function (e) {
                 function t(e) {
@@ -9256,19 +9261,19 @@
                                 className: "header"
                             }, "操作菜单"), Me.a.createElement("li", {
                                 className: "active"
-                            }, Me.a.createElement(en, {
+                            }, Me.a.createElement(en, {     // 客户按钮
                                 to: "/customers"
                             }, Me.a.createElement("i", {
                                 className: "fa fa-user"
                             }), Me.a.createElement("span", null, "客户"))), Me.a.createElement("li", null, Me.a.createElement(en, {
-                                to: "/medicines"
-                            }, Me.a.createElement("i", {
+                                to: "/ipinfos"
+                            }, Me.a.createElement("i", {    // ip信息按钮
                                 className: "fa fa-plus"
-                            }), Me.a.createElement("span", null, "药品"))), Me.a.createElement("li", null, Me.a.createElement(en, {
+                            }), Me.a.createElement("span", null, "IP信息"))), Me.a.createElement("li", null, Me.a.createElement(en, {
                                 to: "/orders"
-                            }, Me.a.createElement("i", {
+                            }, Me.a.createElement("i", {    // 订单按钮
                                 className: "fa fa-paperclip"
-                            }), Me.a.createElement("span", null, "订单"))), Me.a.createElement("li", {
+                            }), Me.a.createElement("span", null, "工单"))), Me.a.createElement("li", {
                                 className: "treeview"
                             }, Me.a.createElement("a", {
                                 href: "#"
@@ -9502,6 +9507,7 @@
                     if ((t = r[n].split("="))[0] === e)
                         return void 0 === t[1] || t[1]
             },
+            // 登录检测
             isMobile: mobilecheck(),
             ajax_base: function (e, t, n, r, o) {
                 mn.a.ajax({
@@ -9519,6 +9525,7 @@
                     }
                 })
             },
+            // http 方法
             ajax_get: function (e, t, n, r) {
                 return this.ajax_base("GET", e, t, n, r)
             },
@@ -10265,7 +10272,12 @@
                                     margin: "20px 1em 0 0",
                                     float: "left"
                                 }
-                            }, Me.a.createElement("input", {
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+// 客户页面
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+                            }, Me.a.createElement("input", {    // 搜索栏
                                 type: "text",
                                 className: "form-control",
                                 placeholder: "请输入关键词搜索",
@@ -10496,7 +10508,7 @@
                                         e.editing_id = t.id,
                                             e.editing_data = e.props.createEditData(t),
                                             e.forceUpdate()
-                                    }
+                                    }   // 客户栏信息修改按钮
                                 }, "编辑") : null, e.props.onDeleteOne ? Me.a.createElement("label", {
                                     type: "button",
                                     className: "btn-green btn-outlined btn-xs",
@@ -10563,7 +10575,7 @@
                                 onAddOne: function (t) {
                                     e.info.curPage = 1,
                                         e.props.onAddOne(t)
-                                },
+                                },  // 添加客户表单
                                 fields: [{
                                     name: "客户名",
                                     aname: "name",
@@ -10582,15 +10594,21 @@
                                     type: "textarea",
                                     value: "",
                                     check_string_len: [0, 2e3]
+                                }, {
+                                    name: "身份证号",
+                                    aname: "idcard",
+                                    type: "text",
+                                    value: "",
+                                    check_string_len: [10, 20]  // 18 位
                                 }]
                             }), Me.a.createElement(Tn, {
-                                onModifyOne: function (t, n, r) {
+                                onModifyOne: function (t, n, r) {   // 更新
                                     e.props.onModifyOne(t, n, r, e.info.curPage)
                                 },
-                                onDeleteOne: function (t) {
+                                onDeleteOne: function (t) {         // 删除
                                     e.props.onDeleteOne(t, e.info.curPage)
                                 },
-                                info: this.info,
+                                info: this.info,    // 显示信息列表
                                 fields: [{
                                     name: "客户名：",
                                     aname: "name",
@@ -10603,8 +10621,12 @@
                                     name: "地址：",
                                     aname: "address",
                                     type: "span"
+                                }, {
+                                    name: "身份证号：",
+                                    aname: "idcard",
+                                    type: "span"
                                 }],
-                                createEditData: function (e) {
+                                createEditData: function (e) {  // 编辑客户信息框
                                     return e.password = "********",
                                         [{
                                             name: "客户名",
@@ -10624,6 +10646,12 @@
                                             type: "textarea",
                                             value: e.address,
                                             check_string_len: [0, 2e3]
+                                        }, {
+                                            name: "身份证号",
+                                            aname: "idcard",
+                                            type: "text",
+                                            value: e.idcard,
+                                            check_string_len: [0, 2e3]
                                         }]
                                 },
                                 data: this.props.data,
@@ -10634,6 +10662,9 @@
                     }]),
                     t
             }()
+////////////////////////////////////////////////////////
+// 客户 api 接口
+////////////////////////////////////////////////////////
             , Nn = Ct(function (e) {
                 return {
                     data: e.customers
@@ -10677,7 +10708,7 @@
                                 o.fetchCustomers(r, 5)
                             })
                     },
-                    onDeleteOne: function (e, t) {
+                    onDeleteOne: function (e, t) {  // 弹窗
                         var n = this;
                         confirm("确定要删除此客户吗？") && vn.ajax_delete("/api/mgr/customers", {
                             action: "del_customer",
@@ -10717,28 +10748,43 @@
                             n && de(e, n)
                     }(t, [{
                         key: "render",
+////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+// IP信息显示栏
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
                         value: function () {
                             var e = this;
                             return Me.a.createElement(Me.a.Fragment, null, Me.a.createElement(xn, {
-                                resourceName: "药品",
+                                resourceName: "IP信息",
                                 onAddOne: function (t) {
                                     e.info.curPage = 1,
                                         e.props.onAddOne(t)
                                 },
                                 fields: [{
-                                    name: "药品名称",
-                                    aname: "name",
+                                    name: "主机名",
+                                    aname: "hostname",
                                     type: "text",
                                     value: ""
                                 }, {
-                                    name: "编号",
-                                    aname: "sn",
+                                    name: "IPv4地址",
+                                    aname: "ipv4addr",
                                     type: "text",
                                     value: ""
                                 }, {
-                                    name: "描述",
-                                    aname: "desc",
-                                    type: "textarea",
+                                    name: "MAC地址",
+                                    aname: "macaddr",
+                                    type: "text",
+                                    value: ""
+                                }, {
+                                    name: "IPv6地址",
+                                    aname: "ipv6addr",
+                                    type: "text",
+                                    value: ""
+                                }, {
+                                    name: "duid信息",
+                                    aname: "duid",
+                                    type: "text",
                                     value: ""
                                 }]
                             }), Me.a.createElement(Tn, {
@@ -10748,41 +10794,59 @@
                                 onDeleteOne: function (t) {
                                     e.props.onDeleteOne(t, e.info.curPage)
                                 },
-                                info: this.info,
+                                info: this.info,    // IP 信息显示界面
                                 fields: [{
-                                    name: "药品：",
-                                    aname: "name",
+                                    name: "主机名",
+                                    aname: "hostname",
                                     type: "span"
                                 }, {
-                                    name: "编号：",
-                                    aname: "sn",
+                                    name: "IPv4地址",
+                                    aname: "ipv4addr",
                                     type: "span"
                                 }, {
-                                    name: "描述：",
-                                    aname: "desc",
+                                    name: "MAC地址",
+                                    aname: "macaddr",
+                                    type: "span"
+                                }, {
+                                    name: "IPv6地址",
+                                    aname: "ipv6addr",
+                                    type: "span"
+                                }, {
+                                    name: "duid信息",
+                                    aname: "duid",
                                     type: "span"
                                 }],
-                                createEditData: function (e) {
+                                createEditData: function (e) {  // 编辑信息栏
                                     return [{
-                                        name: "药品",
-                                        aname: "name",
+                                        name: "主机名",
+                                        aname: "hostname",
                                         type: "text",
-                                        value: e.name
+                                        value: e.hostname
                                     }, {
-                                        name: "编号",
-                                        aname: "sn",
+                                        name: "IPv4地址",
+                                        aname: "ipv4addr",
                                         type: "text",
-                                        value: e.sn
+                                        value: e.ipv4addr
                                     }, {
-                                        name: "描述",
-                                        aname: "desc",
-                                        type: "textarea",
-                                        value: e.desc
+                                        name: "MAC地址",
+                                        aname: "macaddr",
+                                        type: "text",
+                                        value: e.macaddr
+                                    }, {
+                                        name: "IPv6地址",
+                                        aname: "ipv6addr",
+                                        type: "text",
+                                        value: e.ipv6addr
+                                    }, {
+                                        name: "duid信息",
+                                        aname: "duid",
+                                        type: "text",
+                                        value: e.duid
                                     }]
                                 },
                                 data: this.props.data,
                                 pageSize: 5,
-                                fetchItems: this.props.fetchMedicines
+                                fetchItems: this.props.fetchIpinfos
                             }))
                         }
                     }]),
@@ -10790,50 +10854,55 @@
             }()
             , Rn = Ct(function (e) {
                 return {
-                    data: e.medicines
+                    data: e.ipinfos
                 }
             }, function (e) {
+////////////////////////////////
+///////////////////////////////
+// ipinfo API
+//////////////////////////////
+/////////////////////////////
                 return {
-                    fetchMedicines: function (t, n) {
+                    fetchIpinfos: function (t, n) {
                         var r = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : "";
-                        vn.ajax_get("/api/mgr/medicines", {
-                            action: "list_medicine",
+                        vn.ajax_get("/api/mgr/ipinfos", {
+                            action: "list_ipinfo",
                             pagenum: t,
                             pagesize: n,
                             keywords: r
                         }, function (t) {
                             e({
-                                type: "FETCH_MEDICINE_SUCCESS",
+                                type: "FETCH_IPINFO_SUCCESS",
                                 data: t
                             })
                         })
                     },
                     onAddOne: function (e) {
                         var t = this;
-                        vn.ajax_post("/api/mgr/medicines", {
-                            action: "add_medicine",
+                        vn.ajax_post("/api/mgr/ipinfos", {
+                            action: "add_ipinfo",
                             data: e
                         }, function () {
-                            t.fetchMedicines(1, 5)
+                            t.fetchIpinfos(1, 5)
                         })
                     },
                     onModifyOne: function (e, t, n, r) {
                         var o = this;
-                        vn.ajax_put("/api/mgr/medicines", {
-                            action: "modify_medicine",
+                        vn.ajax_put("/api/mgr/ipinfos", {
+                            action: "modify_ipinfo",
                             id: e,
                             newdata: t
                         }, function () {
-                            o.fetchMedicines(r, 5)
+                            o.fetchIpinfos(r, 5)
                         })
                     },
                     onDeleteOne: function (e, t) {
                         var n = this;
-                        confirm("确定要删除此药品吗？") && vn.ajax_delete("/api/mgr/medicines", {
-                            action: "del_medicine",
+                        confirm("确定要删除此IP信息吗？") && vn.ajax_delete("/api/mgr/ipinfos", {
+                            action: "del_ipinfo",
                             id: e
                         }, function () {
-                            n.fetchMedicines(t, 5)
+                            n.fetchIpinfos(t, 5)
                         })
                     }
                 }
@@ -10841,7 +10910,7 @@
             , Mn = n(8)
             , Dn = n.n(Mn)
             , Un = function (e, t) {
-                vn.ajax_get("/api/mgr/customers", {
+                vn.ajax_get("/api/mgr/customers", { // 不清楚作用
                     action: "list_customer",
                     pagenum: 1,
                     pagesize: 50,
@@ -10852,8 +10921,8 @@
                 })
             }
             , An = function (e, t) {
-                vn.ajax_get("/api/mgr/medicines", {
-                    action: "list_medicine",
+                vn.ajax_get("/api/mgr/ipinfos", {   // 不清楚作用
+                    action: "list_ipinfo",
                     pagenum: 1,
                     pagesize: 50,
                     keywords: e,
@@ -10897,23 +10966,28 @@
                     function (e, t, n) {
                         t && be(e.prototype, t),
                             n && be(e, n)
+/////////////////////////////////////
+/////////////////////////////////////
+// 工单
+/////////////////////////////////////
+/////////////////////////////////////
                     }(t, [{
                         key: "render",
                         value: function () {
                             var e = this;
                             return Me.a.createElement(Me.a.Fragment, null, Me.a.createElement(xn, {
-                                resourceName: "订单",
+                                resourceName: "工单",
                                 onAddOne: function (t) {
                                     e.info.curPage = 1,
                                         e.props.onAddOne(t)
                                 },
                                 fields: [{
-                                    name: "订单名称",
+                                    name: "工单名称",
                                     aname: "name",
                                     type: "text",
                                     value: ""
                                 }, {
-                                    name: "客户",
+                                    name: "客户",       // 从客户信息里面选择，单选
                                     aname: "customer",
                                     type: "SingleSelectWithKeywords",
                                     searchfunc: Un,
@@ -10921,38 +10995,62 @@
                                     value: null,
                                     check_not_null: !0
                                 }, {
-                                    name: "药品（数量）：",
-                                    aname: "medicinelist",
+                                    name: "IP信息：",
+                                    aname: "ipinfolist",
                                     type: "MultiSelectWithKeywordsAndExtraValues",
                                     searchfunc: An,
-                                    choicetext: "name",
+                                    choicetext: "hostname",
                                     value: [],
                                     maxnum: 100
+                                }, {
+                                    name: "客户请求信息",
+                                    aname: "user_request",
+                                    type: "textarea",
+                                    value: ""
+                                }, {
+                                    name: "处理信息",
+                                    aname: "dealwith",
+                                    type: "textarea",
+                                    value: "",
+                                    check_string_len: [0, 2e3]
+                                }, {
+                                    name: "备注",
+                                    aname: "remarks",
+                                    type: "textarea",
+                                    value: "",
+                                    check_string_len: [0, 2e3]
                                 }]
                             }), Me.a.createElement(Tn, {
                                 info: this.info,
                                 fields: [{
-                                    name: "订单：",
+                                    name: "工单：",
                                     aname: "name",
                                     type: "span"
-                                }, {
-                                    name: "日期：",
-                                    aname: "create_date",
-                                    type: "span",
-                                    converter: UTCTimeString2Local
                                 }, {
                                     name: "客户：",
                                     aname: "customer_name",
                                     type: "span"
                                 }, {
-                                    name: "药品：",
-                                    aname: "medicinelist",
-                                    type: "p",
-                                    converter: function (e) {
-                                        return JSON.parse(e).map(function (e) {
-                                            return "".concat(e.name, " * ").concat(e.amount)
-                                        }).join("\n")
-                                    }
+                                    name: "Hostname：",
+                                    aname: "ipinfos_hostname",
+                                    type: "span"
+                                }, {
+                                    name: "客户请求信息：",
+                                    aname: "user_request",
+                                    type: "span"
+                                }, {
+                                    name: "处理信息：",
+                                    aname: "dealwith",
+                                    type: "span"
+                                }, {
+                                    name: "备注：",
+                                    aname: "remarks",
+                                    type: "span"
+                                },{
+                                    name: "日期：",
+                                    aname: "create_date",
+                                    type: "span",
+                                    converter: UTCTimeString2Local
                                 }],
                                 data: this.props.data,
                                 pageSize: 5,
@@ -11051,7 +11149,7 @@
                             , n = {
                                 name: e.name,
                                 customerid: e.customer.id,
-                                medicinelist: e.medicinelist.map(function (e) {
+                                ipinfolist: e.ipinfolist.map(function (e) {
                                     return {
                                         id: e.id,
                                         amount: e.v,
@@ -11127,7 +11225,7 @@
                                 component: Nn
                             }), Me.a.createElement(pn, {
                                 exact: !0,
-                                path: "/medicines",
+                                path: "/ipinfos",
                                 component: Rn
                             }), Me.a.createElement(pn, {
                                 exact: !0,
@@ -11177,9 +11275,9 @@
                                 className: "main-footer"
                             }, Me.a.createElement("div", {
                                 className: "pull-right hidden-xs"
-                            }, "白月黑羽web教学使用"), Me.a.createElement("strong", null, "Copyright © 2019 ", Me.a.createElement("a", {
+                            }, "鱼塘认证使用"), Me.a.createElement("strong", null, "Copyright © 2019 ", Me.a.createElement("a", {
                                 href: "#"
-                            }, "白月黑羽"), "."), " All rights reserved.")
+                            }, "鱼塘认证系统"), "."), " All rights reserved.")
                         }
                     }]),
                     t
@@ -11289,7 +11387,7 @@
                 profile: {
                     id: 123,
                     realname: "管理员",
-                    joined: "2018-10-1 注册"
+                    joined: "2019-04-14 注册"
                 }
             });
         window.rStore = Hn,

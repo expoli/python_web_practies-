@@ -5,7 +5,9 @@ def test():
     url = "http://localhost:8000/api/mgr/orders"    #测试的接口url
     headers = {"Content-Type":"application/json"}   
     payload = {
-        "action":"list_order"
+        "action":"list_order",
+        "pagenum": "1",
+        "pagesize": "5"
         }
     r = requests.post(url = url,json = payload,headers = headers)    #发送请求
     #return r.json

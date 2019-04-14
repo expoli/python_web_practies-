@@ -49,7 +49,7 @@ def listorder(request):
                 ipinfos_hostname=F('ipinfos__hostname')
             )\
             .values(
-                'id', 'name', 'create_date', 'user_request', 'dealwith', 'remarks'
+                'id', 'name', 'create_date', 'user_request', 'dealwith', 'remarks', 'customer_name', 'ipinfos_hostname'
             ).order_by('-id')
 
         # 查看是否有 关键字 搜索 参数
