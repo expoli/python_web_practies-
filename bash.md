@@ -1,6 +1,7 @@
 # 启动 django 进程
 
 python3 manage.py runserver 0.0.0.0:8000 &
+python3 manage.py runserver 0.0.0.0:8000 --insecure
 
 # 创建项目app
 

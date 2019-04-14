@@ -25,7 +25,8 @@ SECRET_KEY = '$179nd7ya!jf=-1bq*56c-zdpf8usitfr%cy8=9i(&!0js%1cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["yutang.expoli.tech",
+                "192.168.178.106"]
 
 
 # Application definition
