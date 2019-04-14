@@ -60,8 +60,8 @@ def addipinfo(request):
                                    ipv4addr=info['ipv4addr'],
                                    macaddr=info['macaddr'],
                                    ipv6addr=info['ipv6addr'],
-                                   duid=info['duid'],
-                                   customer_id=info['customerid']
+                                   duid=info['duid']
+                                #    customer_id=info['customerid']
                                    )
 
     return JsonResponse({'ret': 0, 'id': ipinfo.id})
@@ -94,8 +94,8 @@ def modifyipinfo(request):
         ipinfo.ipv6addr = newdata['ipv6addr']
     if 'duid' in newdata:
         ipinfo.duid = newdata['duid']
-    if 'customer_id' in newdata:
-        ipinfo.customer_id = newdata['customer_id']
+    # if 'customer_id' in newdata:
+    #     ipinfo.customer_id = newdata['customer_id']
 
     # 注意，一定要执行save才能将修改信息保存到数据库
     ipinfo.save()

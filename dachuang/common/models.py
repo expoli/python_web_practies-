@@ -31,7 +31,7 @@ class IPinfo(models.Model):
     # Django发现这样一对一定定义，它会在migrate的时候，
     # 在数据库中定义该字段为外键的同时， 加上 unique=True 约束，
     # 表示在此表中，所有记录的该字段 取值必须唯一，不能重复。
-    customer = models.OneToOneField(Customer,on_delete=models.CASCADE)
+    # customer = models.OneToOneField(Customer,on_delete=models.CASCADE)
 
 # Order 订单系统
 class Order(models.Model):
