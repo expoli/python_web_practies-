@@ -2,7 +2,7 @@ import requests
 import json
  
 def test():
-    url = "http://localhost:8000/api/mgr/ipinfos"    #测试的接口url
+    url = "http://yutang.expoli.tech/api/mgr/ipinfos"    #测试的接口url
     headers = {"Content-Type":"application/json"}   
     payload = {
         "action":"add_ipinfo",

@@ -54,7 +54,7 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.PROTECT)
 
     # 客户 禁止删除记录。PROTECT
-    ipinfos = models.ManyToManyField(IPinfo,through='OrderIPinfo')
+    # ipinfos = models.ManyToManyField(IPinfo,through='OrderIPinfo')
 
 class OrderIPinfo(models.Model):
     order = models.ForeignKey(Order, on_delete=models.PROTECT)

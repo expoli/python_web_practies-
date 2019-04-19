@@ -59,9 +59,9 @@ def addcustomer(request):
     # 从请求消息中 获取要添加客户的信息
     # 并且插入到数据库中
     # 返回值 就是对应插入记录的对象
-    record = Customer.objects.create(address=info['name'],
-                                     name=info['phonenumber'],
-                                     phonenumber=info['address'],
+    record = Customer.objects.create(address=info['address'],
+                                     name=info['name'],
+                                     phonenumber=info['phonenumber'],
                                      idcard=info['idcard']
                                      )
     return JsonResponse({'ret': 0, 'id': record.id})

@@ -2,11 +2,11 @@ import requests
 import json
  
 def test():
-    url = "http://localhost:8000/api/mgr/customers"    #测试的接口url
+    url = "http://yutang.expoli.tech/api/mgr/customers"    #测试的接口url
     headers = {"Content-Type":"application/json"}   
     payload = {
         "action":"del_customer",
-        "id": 1
+        "id": 2
     }
     r = requests.post(url = url,json = payload,headers = headers)    #发送请求
     #return r.json
