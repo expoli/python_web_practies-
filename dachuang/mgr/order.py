@@ -45,7 +45,7 @@ def listorder(request):
         qs = Order.objects\
             .annotate(
                 customer_name=F('customer__name'),
-                ipinfos_hostname=F('ipinfo__hostname')
+                ipinfos_hostname=F('ipinfos__hostname')
             )\
             .values(
                 'id', 'name', 'create_date', 'user_request', 'dealwith', 'remarks', 'customer_name', 'ipinfos_hostname'

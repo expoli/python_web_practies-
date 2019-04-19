@@ -19,8 +19,8 @@ def listcustomers(request):
         # 查看是否有 关键字 搜索 参数
         keywords = request.params.get('keywords',None)
         if keywords:
-            # hostname__contains 为数据表键值
-            conditions = [Q(hostname__contains=one) for one in keywords.split(' ') if one]
+            # name__contains 为数据表键值 使用名字作为搜索项
+            conditions = [Q(name__contains=one) for one in keywords.split(' ') if one]
             query = Q()
             for condition in conditions:
                 query &= condition
