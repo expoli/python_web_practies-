@@ -2,10 +2,13 @@ import requests
 import json
  
 def test():
-    url = "http://localhost:8000/api/mgr/ipinfos"    #测试的接口url
+    url = "http://yutang.expoli.tech/api/mgr/ipinfos"    #测试的接口url
     headers = {"Content-Type":"application/json"}   
     payload = {
-        "action":"list_ipinfo"
+        "action":"list_ipinfo",
+        "pagenum":1,
+        "pagesize":8,
+        'keywords':'expoli'
     }
     r = requests.post(url = url,json = payload,headers = headers)    #发送请求
     #return r.json

@@ -19,12 +19,13 @@ def listipinfo(request):
         # 查看是否有 关键字 搜索 参数
         keywords = request.params.get('keywords',None)
         if keywords:
-            conditions = [Q(name__contains=one) for one in keywords.split(' ') if one]
+            # hostname__contains 为数据表键值
+            conditions = [Q(hostname__contains=one) for one in keywords.split(' ') if one]
             query = Q()
             for condition in conditions:
                 query &= condition
             qs = qs.filter(query)
-        
+
         # 要获取的第几页
         pagenum = request.params['pagenum']
 
