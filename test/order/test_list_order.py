@@ -2,7 +2,7 @@ import requests
 import json
  
 def test():
-    url = "http://localhost:8000/api/mgr/orders"    #测试的接口url
+    url = "http://yutang.expoli.tech/api/mgr/orders"    #测试的接口url
     headers = {"Content-Type":"application/json"}   
     payload = {
         "action":"list_order",
