@@ -12,7 +12,7 @@ import requests
 class get_openwrt_status(object):
 
     def __init__(self):
-        self.dhcp_json = {'ipv4':[],'ipv6':[]}
+        self.dhcp_json = {'ipv4': [], 'ipv6': []}
         self.overview_json = {}
         self.login_url = 'http://192.168.178.1/cgi-bin/luci'
         self.headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
@@ -340,14 +340,15 @@ class write_center_info(object):
             # 关闭数据库
             openwrt_db.close()
 
+
 def test_add_ipinfo(dhcp_json):
-    url = "http://yutang.expoli.tech/api/mgr/ipinfos"    #测试的接口url
-    headers = {"Content-Type":"application/json"}   
+    url = "http://yutang.expoli.tech/api/mgr/ipinfos"  # 测试的接口url
+    headers = {"Content-Type": "application/json"}
     # 获取ipv4的数量
     number = len(dhcp_json['ipv4'])
     # 遍历 IP 数据
     for i in range(number):
-        # 取得 hostname 
+        # 取得 hostname
         hostname = dhcp_json['ipv4'][i]['hostname']
         # 取得 ipv4 地址
         ipv4addr = dhcp_json['ipv4'][i]['ipaddr']
@@ -369,12 +370,12 @@ def test_add_ipinfo(dhcp_json):
                 duid = 'null'
         # 查询 api 参数
         list_payload = {
-            "action":"list_ipinfo",
-            "pagenum":1,
-            "pagesize":8,
+            "action": "list_ipinfo",
+            "pagenum": 1,
+            "pagesize": 8,
             'keywords': hostname
         }
-        r = requests.post(url = url,json = list_payload,headers = headers)    #发送请求
+        r = requests.post(url=url, json=list_payload, headers=headers)  # 发送请求
         # 将结果转化为字符串
         tmp = r.text
         # 将字符串 转化为 json
@@ -384,37 +385,39 @@ def test_add_ipinfo(dhcp_json):
         if total_num:
             id = list_json['retlist'][0]['id']
             update_payload = {
-                "action":"modify_ipinfo",
+                "action": "modify_ipinfo",
                 "id": id,
-                "newdata":{
-                    "hostname": hostname, 
-                    "ipv4addr": ipv4addr, 
-                    "macaddr": macaddr, 
-                    "ipv6addr": ipv6addr, 
+                "newdata": {
+                    "hostname": hostname,
+                    "ipv4addr": ipv4addr,
+                    "macaddr": macaddr,
+                    "ipv6addr": ipv6addr,
                     "duid": duid
                 }
             }
-            r = requests.post(url = url,json = update_payload ,headers = headers)    #发送请求
-            #return r.json
-            print (r.text)                                                #获取响应报文
-            print (r.status_code)
+            r = requests.post(url=url, json=update_payload,
+                              headers=headers)  # 发送请求
+            # return r.json
+            print(r.text)  # 获取响应报文
+            print(r.status_code)
             pass
         else:
             # 添加数据的post请求包
             payload = {
-                "action":"add_ipinfo",
-                "data":{
-                    "hostname": hostname, 
-                    "ipv4addr": ipv4addr, 
-                    "macaddr": macaddr, 
+                "action": "add_ipinfo",
+                "data": {
+                    "hostname": hostname,
+                    "ipv4addr": ipv4addr,
+                    "macaddr": macaddr,
                     "ipv6addr": ipv6addr,
-                    "duid" : duid
+                    "duid": duid
                 }
             }
-            r = requests.post(url = url,json = payload,headers = headers)    #发送请求
-            #return r.json
-            print (r.text)                                                #获取响应报文
-            print (r.status_code)
+            r = requests.post(url=url, json=payload, headers=headers)  # 发送请求
+            # return r.json
+            print(r.text)  # 获取响应报文
+            print(r.status_code)
+
 
 if __name__ == "__main__":
 
@@ -428,4 +431,3 @@ if __name__ == "__main__":
     dhcp_json = openwrt_status.get_dhcp_json()
     test_add_ipinfo(dhcp_json)
     overview_json = openwrt_status.get_overview_json()
-
